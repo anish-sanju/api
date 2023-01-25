@@ -3,12 +3,12 @@ from marshmallow import Schema
 # Admin Schema
 class AdminSchema(Schema):
     class Meta:
-        fields = ('admin_id', 'name', 'email', 'password')
+        fields = ('admin_id', 'admin_name', 'admin_email', 'admin_password')
 
 # Customer Schema
 class CustomerSchema(Schema):
-    class Meta:
-        fields = ('customer_id', 'name', 'email', 'password', 'phone')
+    class Meta: 
+        fields = ('customer_id', 'customer_name', 'customer_email', 'customer_password', 'customer_phone')
 
 # Food Schema
 class FoodSchema(Schema):

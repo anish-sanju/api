@@ -8,10 +8,28 @@ class CRUD():
         all_records = model.query.all()
         result = schema(many=True).dump(all_records)
         return jsonify(result)
-    # Get a single record
-    def getById(self, model, schema, table, id):
-        record = model.query.filter_by(table=id).first()
-        return jsonify(schema(many=False).dump(record))
+    
+    # Get a record by name
+    def get_by_name(self, model, schema, entity, name):
+        if entity == 'admin_name':
+            record = model.query.filter_by(admin_name=name).first()
+        elif entity == 'customer_name':
+            record = model.query.filter_by(customer_name=name).first()
+        elif entity == 'food_name':
+            record = model.query.filter_by(food_name=name).first()
+        elif entity == 'order_id':
+            record = model.query.filter_by(order_id=name).first()
+        elif entity == 'review_id':
+            record = model.query.filter_by(review_id=name).first()
+        result = schema().dump(record)
+        return jsonify(result)
+    
+    # Get a record by id
+    def get_by_id(self, model, schema, id):
+        record = model.query.get_or_404(id)
+        result = schema().dump(record)
+        return jsonify(result)
+    
     # Create a record
     def post(self, model, schema):
         if request.is_json:

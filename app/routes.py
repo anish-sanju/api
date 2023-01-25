@@ -29,6 +29,11 @@ def get_put_delete_admin(id):
     elif request.method == 'DELETE':
         return crud.delete(Admin, AdminSchema, id)
 
+# Route for getting admin by name
+@app.route('/admin/<string:admin_name>', methods=['GET'])
+def get_admin_by_name(admin_name):
+    return crud.get_by_name(Admin, AdminSchema, 'admin_name', admin_name)
+
 # Routes for Customer
 @app.route('/customer', methods=['GET', 'POST'])
 def get_post_customer():
@@ -37,14 +42,10 @@ def get_post_customer():
     elif request.method == 'POST':
         return crud.post(Customer, CustomerSchema)
 
-@app.route('/customer/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-def get_put_delete_customer(id):
-    if request.method == 'GET':
-        return crud.getById(Customer, CustomerSchema, id)
-    elif request.method == 'PUT':
-        return crud.put(Customer, CustomerSchema, id)
-    elif request.method == 'DELETE':
-        return crud.delete(Customer, CustomerSchema, id)
+# Route for getting customer by name
+@app.route('/customer/<string:customer_name>', methods=['GET'])
+def get_customer_by_name(customer_name):
+    return crud.get_by_name(Customer, CustomerSchema, 'customer_name', customer_name)
 
 # Routes for Food
 @app.route('/food', methods=['GET', 'POST'])

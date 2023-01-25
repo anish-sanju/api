@@ -9,6 +9,7 @@ app.debug = True
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['CORS_HEADERS'] = 'Content-Type'
+app.config['DEBUG'] = True
 # configuration of database
 app.config.from_object(__name__)
 
